@@ -1,13 +1,17 @@
-import { useDispatch } from "react-redux";
 import {NF_LOGO_IMG,NF_USER_IMG} from "../utils/constants";
-import {removeUser} from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import {signOut } from "firebase/auth";
+import {auth} from "../utils/firebase";
+
 const Header = ()=>{
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleClick = ()=>{
-      dispatch(removeUser());
-      navigate("/");
+      signOut(auth).then(() => {
+        navigate("/");
+      }).catch((error) => {
+        navigate("/error");
+      });
+      
     }
     return (
         

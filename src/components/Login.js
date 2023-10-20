@@ -1,12 +1,15 @@
 import {NF_BG_IMG} from "../utils/constants";
 import { useState, useRef } from "react";
 import {isValidSignIn, isValidSignUp} from "../utils/validation";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile  } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import {NF_LOGO_IMG} from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
 
 const Login = ()=>{
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isSinedIn , setIsSignedIN] = useState(true);
     const [errorMessage , setErrorMessage] = useState(null);
@@ -42,7 +45,16 @@ const Login = ()=>{
                 .then((userCredential) => {
                     // Signed up 
                     const user = userCredential.user;
-                    navigate("/browse");
+                    // giving a username
+                    updateProfile(user, {
+                        displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+                      }).then(() => {
+                        const {uid, email, displayName, photoURL} = auth.currentUser;
+                        dispatch(addUser({uid:uid, email:email, displayName:displayName, photoURL:photoURL}));
+                        navigate("/browse");
+                      }).catch((error) => {
+                        setErrorMessage(error.message);
+                      });    
                 })
                 .catch((error) => {
                     const errorCode = error.code;
