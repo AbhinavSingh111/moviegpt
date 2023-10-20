@@ -1,5 +1,8 @@
 1. npx create-react-app
 2. stetup tailwind css
+3. setup routing
+4. Login page
+    - login form / sign up form
 
 # Features
     -Login/Signup
