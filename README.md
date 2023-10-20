@@ -8,6 +8,7 @@
 7. installed firebase and hosted on it
 8. create user acc in firebase / signin-signup
 9. setup redux->userslice
+10. implemented onsuthstatechanged and configured it to change redux store accordingly
 
 # Features
     -Login/Signup

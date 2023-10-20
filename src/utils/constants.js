@@ -1,2 +1,3 @@
 export const NF_BG_IMG = "https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/IN-en-20231016-popsignuptwoweeks-perspective_alpha_website_large.jpg";
 export const NF_LOGO_IMG = "https://images.ctfassets.net/y2ske730sjqp/2GxOK8ErCUIO3JmOIKftuc/6eff5ac8732196f68b7d0e2d2af81b8c/Logos-Readability-N-Symbol.png";
+export const NF_USER_IMG = "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png";

@@ -1,11 +1,13 @@
-import Header from "./Header";
 import {NF_BG_IMG} from "../utils/constants";
 import { useState, useRef } from "react";
 import {isValidSignIn, isValidSignUp} from "../utils/validation";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import {NF_LOGO_IMG} from "../utils/constants";
 
 const Login = ()=>{
+    const navigate = useNavigate();
     const [isSinedIn , setIsSignedIN] = useState(true);
     const [errorMessage , setErrorMessage] = useState(null);
     const name = useRef(null);
@@ -23,8 +25,7 @@ const Login = ()=>{
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    console.log(user);
-                    // ...
+                    navigate("/browse");
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -41,14 +42,13 @@ const Login = ()=>{
                 .then((userCredential) => {
                     // Signed up 
                     const user = userCredential.user;
-                    console.log(user);
-                    // ...
+                    navigate("/browse");
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     setErrorMessage(errorCode+"-"+errorMessage);
-                    // ..
+                    
                 });
                             
         }
@@ -57,7 +57,9 @@ const Login = ()=>{
 
     return (
         <div>
-            <Header />
+            <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full justify-between flex">
+            <img className="w-40" src={NF_LOGO_IMG} alt="logo" />
+            </div>
             <div className="absolute">
                 <img src={NF_BG_IMG} alt="background" />
             </div>
