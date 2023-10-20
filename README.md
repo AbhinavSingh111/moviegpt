@@ -6,7 +6,8 @@
 5. Form Validation
 6. useRef Hook
 7. installed firebase and hosted on it
-8. create user acc in firebase
+8. create user acc in firebase / signin-signup
+9. setup redux->userslice
 
 # Features
     -Login/Signup
