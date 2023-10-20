@@ -3,6 +3,8 @@
 3. setup routing
 4. Login page
     - login form / sign up form
+5. Form Validation
+6. useRef Hook
 
 # Features
     -Login/Signup
