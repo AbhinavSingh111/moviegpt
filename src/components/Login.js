@@ -2,6 +2,8 @@ import Header from "./Header";
 import {NF_BG_IMG} from "../utils/constants";
 import { useState, useRef } from "react";
 import {isValidSignIn, isValidSignUp} from "../utils/validation";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = ()=>{
     const [isSinedIn , setIsSignedIN] = useState(true);
@@ -16,10 +18,39 @@ const Login = ()=>{
         if(isSinedIn){
             const validationResultSignedIn = isValidSignIn(email.current.value , password.current.value);
             setErrorMessage(validationResultSignedIn);
+            if(validationResultSignedIn) return;
+            signInWithEmailAndPassword(auth, email.current.value , password.current.value)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user);
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage(errorCode+"-"+errorMessage);
+                });
         }
         else{
             const validationResultSignedUp = isValidSignUp(name.current.value, email.current.value , password.current.value);
-        setErrorMessage(validationResultSignedUp);
+            setErrorMessage(validationResultSignedUp);
+            // signup login
+            if(validationResultSignedUp) return;
+            createUserWithEmailAndPassword(auth, email.current.value , password.current.value)
+                .then((userCredential) => {
+                    // Signed up 
+                    const user = userCredential.user;
+                    console.log(user);
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage(errorCode+"-"+errorMessage);
+                    // ..
+                });
+                            
         }
         
     }

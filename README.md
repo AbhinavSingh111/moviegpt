@@ -5,6 +5,8 @@
     - login form / sign up form
 5. Form Validation
 6. useRef Hook
+7. installed firebase and hosted on it
+8. create user acc in firebase
 
 # Features
     -Login/Signup
