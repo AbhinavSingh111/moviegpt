@@ -1,7 +1,7 @@
 import Header from "./Header";
 import {NF_BG_IMG} from "../utils/constants";
 import { useState, useRef } from "react";
-import {isValid} from "../utils/validation";
+import {isValidSignIn, isValidSignUp} from "../utils/validation";
 
 const Login = ()=>{
     const [isSinedIn , setIsSignedIN] = useState(true);
@@ -12,10 +12,18 @@ const Login = ()=>{
     const handleToggleSign = ()=>{
         setIsSignedIN(!isSinedIn);
     }
-    const handleSubmit = ()=>{
-        const validationResult = isValid(name.current.validationResult, email.current.value , password.current.value);
-        setErrorMessage(validationResult);
+    const handleSubmit= ()=>{
+        if(isSinedIn){
+            const validationResultSignedIn = isValidSignIn(email.current.value , password.current.value);
+            setErrorMessage(validationResultSignedIn);
+        }
+        else{
+            const validationResultSignedUp = isValidSignUp(name.current.value, email.current.value , password.current.value);
+        setErrorMessage(validationResultSignedUp);
+        }
+        
     }
+
     return (
         <div>
             <Header />
@@ -24,7 +32,7 @@ const Login = ()=>{
             </div>
             <form onSubmit={(e)=>e.preventDefault()} className="absolute p-12 bg-black bg-opacity-70 w-3/12 my-36 mx-auto right-0 left-0 text-white">
                 <h1 className=" text-white text-3xl font-bold py-4">{isSinedIn?"Sign In":"Sign Up"}</h1>
-                {!isSinedIn &&<input autoComplete="namae" ref={name} type="text" placeholder="Full Name" className="p-4 my-4 w-full bg-gray-950" />}
+                {!isSinedIn &&<input autoComplete="name" ref={name} type="text" placeholder="Full Name" className="p-4 my-4 w-full bg-gray-950" />}
                 <input autoComplete="email" ref={email} type="text" placeholder="Email Address" className="p-4 my-4 w-full bg-gray-950" />
                 <input autoComplete="current-password" ref={password} type="password" placeholder="Password" className="p-4 my-4 w-full bg-gray-950" />
                 <p className="text-red-600">{errorMessage}</p>
