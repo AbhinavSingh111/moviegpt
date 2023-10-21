@@ -1,6 +1,9 @@
+import useBrowse from "../hooks/useBrowse";
 import Header from "./Header";
 
+
 const Browse = () =>{
+    useBrowse();
     return (
         <div>
             {console.log("browser before header render")}

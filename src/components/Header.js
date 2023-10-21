@@ -5,6 +5,7 @@ import {auth} from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../redux/userSlice";
+import { removeNowPlayingMovies } from "../redux/moviesSlice";
 
 const Header = ()=>{
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Header = ()=>{
     const handleClick = ()=>{
       signOut(auth).then(() => {
         dispatch(removeUser());
+        dispatch(removeNowPlayingMovies());
         navigate("/");
       }).catch((error) => {
         navigate("/error");
