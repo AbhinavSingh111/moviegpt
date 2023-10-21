@@ -9,6 +9,9 @@
 8. create user acc in firebase / signin-signup
 9. setup redux->userslice
 10. implemented onsuthstatechanged and configured it to change redux store accordingly
+10. implemented signout , updateprofile api , added name to signup
+11. redirecting user via protected route , unsubscribed to onAuthStateChange callback
+11. Fetch movie from TMDB
 
 # Features
     -Login/Signup

@@ -3,14 +3,12 @@ import { useState, useRef } from "react";
 import {isValidSignIn, isValidSignUp} from "../utils/validation";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile  } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
-import {NF_LOGO_IMG} from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import Header from "./Header";
 
 const Login = ()=>{
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [isSinedIn , setIsSignedIN] = useState(true);
     const [errorMessage , setErrorMessage] = useState(null);
     const name = useRef(null);
@@ -28,7 +26,8 @@ const Login = ()=>{
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    navigate("/browse");
+                    console.log("sign in complete");
+                    
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -39,7 +38,7 @@ const Login = ()=>{
         else{
             const validationResultSignedUp = isValidSignUp(name.current.value, email.current.value , password.current.value);
             setErrorMessage(validationResultSignedUp);
-            // signup login
+            // signup logic
             if(validationResultSignedUp) return;
             createUserWithEmailAndPassword(auth, email.current.value , password.current.value)
                 .then((userCredential) => {
@@ -51,7 +50,8 @@ const Login = ()=>{
                       }).then(() => {
                         const {uid, email, displayName, photoURL} = auth.currentUser;
                         dispatch(addUser({uid:uid, email:email, displayName:displayName, photoURL:photoURL}));
-                        navigate("/browse");
+                        console.log("user added coming from login page")
+                        
                       }).catch((error) => {
                         setErrorMessage(error.message);
                       });    
@@ -69,9 +69,8 @@ const Login = ()=>{
 
     return (
         <div>
-            <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full justify-between flex">
-            <img className="w-40" src={NF_LOGO_IMG} alt="logo" />
-            </div>
+            <Header />
+            {console.log("after header render rest of login page is rendered here")}
             <div className="absolute">
                 <img src={NF_BG_IMG} alt="background" />
             </div>
