@@ -1,11 +1,21 @@
-import useBrowse from "../hooks/useBrowse";
+import useNowPlaying from "../hooks/useNowPlaying";
+import usePopular from "../hooks/usePopular";
+import useTopRated from "../hooks/useTopRated";
+import useUpcoming from "../hooks/useUpcoming";
+import useDiscover from "../hooks/useDiscover";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 
 
 const Browse = () =>{
-    useBrowse();
+    useNowPlaying();
+    usePopular();
+    useTopRated();
+    useUpcoming();
+    useDiscover();
+
+
     return (
         <div>
             {console.log("browser before header render")}

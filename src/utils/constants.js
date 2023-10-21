@@ -9,3 +9,9 @@ export const API_OPTIONS= {
     }
   };
 export const VIDEOS_LINK = 'https://api.themoviedb.org/3/movie/';
+export const POSTER_LINK = "https://image.tmdb.org/t/p/w500";
+export const PLAYING_NOW = 'https://api.themoviedb.org/3/movie/now_playing';
+export const POPULAR_MOVIES = 'https://api.themoviedb.org/3/movie/popular';
+export const TOP_RATED = 'https://api.themoviedb.org/3/movie/top_rated';
+export const UPCOMING = 'https://api.themoviedb.org/3/movie/upcoming';
+export const DISCOVER = 'https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&page=1&sort_by=popularity.desc';

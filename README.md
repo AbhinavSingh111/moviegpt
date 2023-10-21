@@ -14,6 +14,7 @@
 11. Fetch movie from TMDB (registered , acces token , fetched now playing , made custom hook for that)
 12. made a slice for movie data - > updated data in that slice
 13. fetched trailer data , added in store , primary , secondary , title , video back ground component , embedded youtube player
+14. made movie list card , filled with various movie list , data coming from apis  ,page beautification
 
 # Features
     -Login/Signup
