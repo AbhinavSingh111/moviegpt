@@ -13,6 +13,7 @@
 11. redirecting user via protected route , unsubscribed to onAuthStateChange callback
 11. Fetch movie from TMDB (registered , acces token , fetched now playing , made custom hook for that)
 12. made a slice for movie data - > updated data in that slice
+13. fetched trailer data , added in store , primary , secondary , title , video back ground component , embedded youtube player
 
 # Features
     -Login/Signup

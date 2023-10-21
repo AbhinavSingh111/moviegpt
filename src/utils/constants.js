@@ -8,4 +8,4 @@ export const API_OPTIONS= {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4Y2VhNTA2MjI2MjgxN2Q3NDYyNmJkODE3NDE4ZDY5YiIsInN1YiI6IjY1MzM5MWZlYWJkYWZjMDE0ZTdjZjQ0MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nO83PgwiOQesw9kMecs89B-1zG7ZyZPWmOIyp4LHjfs'
     }
   };
-  
+export const VIDEOS_LINK = 'https://api.themoviedb.org/3/movie/';

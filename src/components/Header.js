@@ -14,7 +14,7 @@ const Header = ()=>{
     const handleClick = ()=>{
       signOut(auth).then(() => {
         dispatch(removeUser());
-        dispatch(removeNowPlayingMovies());
+        // dispatch(removeNowPlayingMovies());
         navigate("/");
       }).catch((error) => {
         navigate("/error");
