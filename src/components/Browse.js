@@ -6,7 +6,8 @@ import useDiscover from "../hooks/useDiscover";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
-
+import GptSearch from "./GptSearch";
+import { useSelector } from "react-redux";
 
 const Browse = () =>{
     useNowPlaying();
@@ -14,14 +15,21 @@ const Browse = () =>{
     useTopRated();
     useUpcoming();
     useDiscover();
+    const gptView = useSelector((store)=>store.gpt.showGptsearch);
 
 
     return (
         <div>
             {console.log("browser before header render")}
             <Header />
-            <MainContainer />
-            <SecondaryContainer />
+            {gptView ? <GptSearch /> : 
+            (<>
+                <MainContainer />
+                <SecondaryContainer />
+            </>
+            )
+            }
+            
             {console.log("browser after header render")}
         </div>
     );

@@ -15,3 +15,7 @@ export const POPULAR_MOVIES = 'https://api.themoviedb.org/3/movie/popular';
 export const TOP_RATED = 'https://api.themoviedb.org/3/movie/top_rated';
 export const UPCOMING = 'https://api.themoviedb.org/3/movie/upcoming';
 export const DISCOVER = 'https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&page=1&sort_by=popularity.desc';
+
+export const SUPPORTED_LANG = [{identifier:"English" , name:"English"},
+{identifier:"Hindi" , name:"हिंदी"},
+{identifier:"French" , name:"French"}]

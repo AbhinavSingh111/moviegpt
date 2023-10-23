@@ -15,6 +15,8 @@
 12. made a slice for movie data - > updated data in that slice
 13. fetched trailer data , added in store , primary , secondary , title , video back ground component , embedded youtube player
 14. made movie list card , filled with various movie list , data coming from apis  ,page beautification
+15. Gpt search feature > added gpt search bar , button 
+16. added multi lang feature in gpt page using redux , made seprate slice (gpt toggle , lang state)
 
 # Features
     -Login/Signup

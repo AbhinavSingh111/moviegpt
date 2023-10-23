@@ -1,16 +1,20 @@
-import {NF_LOGO_IMG,NF_USER_IMG} from "../utils/constants";
+import {NF_LOGO_IMG,NF_USER_IMG, SUPPORTED_LANG} from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 import {onAuthStateChanged, signOut } from "firebase/auth";
 import {auth} from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../redux/userSlice";
-import { removeNowPlayingMovies } from "../redux/moviesSlice";
+// import { removeNowPlayingMovies } from "../redux/moviesSlice";
+import { toggleGptSearchView } from "../redux/gptSlice";
+import { changeLanguage } from "../redux/configSlice";
 
 const Header = ()=>{
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((store)=>store.user);
+    const gptView = useSelector((store)=>store.gpt.showGptsearch);
+
     const handleClick = ()=>{
       signOut(auth).then(() => {
         dispatch(removeUser());
@@ -20,6 +24,14 @@ const Header = ()=>{
         navigate("/error");
       });
       
+    };
+
+    const handleLanguageChange = (e)=>{
+        dispatch(changeLanguage(e.target.value));
+    };
+
+    const handleGptClick = ()=>{
+      dispatch(toggleGptSearchView());
     }
 
     useEffect(()=>{
@@ -47,8 +59,15 @@ const Header = ()=>{
         <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full justify-between flex">
           <img className="w-40" src={NF_LOGO_IMG} alt="logo" />
           {user && (<div className="flex p-2 ml-auto">
-            <img className="w-10" src={NF_USER_IMG} alt="user logo" />
-            <button className="px-4 py-2 mx-4 rounded-lg bg-red-500 items-center shadow-lg hover:bg-red-600" onClick={handleClick}>Sign Out</button>
+            {
+             gptView&&( <select className="px-1 pr-3 py-2 mx-4 h-12  bg-white rounded-lg hover:bg-opacity-80" onChange={handleLanguageChange}>
+                {SUPPORTED_LANG.map(lang=><option key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}
+              </select>)
+            }
+            <button className="px-2 py-2 mx-4 h-12 rounded-lg bg-red-700 items-center shadow-lg hover:bg-opacity-80" onClick={handleGptClick}>
+              {gptView ? "Home" : "GPT Search"}</button>
+            <img className="w-10 h-12" src={NF_USER_IMG} alt="user logo" />
+            <button className="px-2 py-2 mx-4 h-12 rounded-lg bg-white items-center shadow-lg hover:bg-opacity-80" onClick={handleClick}>Sign Out</button>
           </div>)
           }
           {console.log("head rendered")};
