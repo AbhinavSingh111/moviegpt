@@ -17,6 +17,13 @@
 14. made movie list card , filled with various movie list , data coming from apis  ,page beautification
 15. Gpt search feature > added gpt search bar , button 
 16. added multi lang feature in gpt page using redux , made seprate slice (gpt toggle , lang state)
+17. Integrate GPT APIS
+18. Build specific prompt
+19. Fetched results form gpt and format it
+20. Use tmdb api to search for formatted res
+21. Use the tmdb res to show movie posters by reusing movieList component
+22. Making use of .env variables for keeping secret keys
+23. used memoization , to reduce api calls if data is in store
 
 # Features
     -Login/Signup
