@@ -26,7 +26,6 @@ const Login = ()=>{
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    console.log("sign in complete");
                     
                 })
                 .catch((error) => {
@@ -50,7 +49,6 @@ const Login = ()=>{
                       }).then(() => {
                         const {uid, email, displayName, photoURL} = auth.currentUser;
                         dispatch(addUser({uid:uid, email:email, displayName:displayName, photoURL:photoURL}));
-                        console.log("user added coming from login page")
                         
                       }).catch((error) => {
                         setErrorMessage(error.message);
@@ -70,11 +68,10 @@ const Login = ()=>{
     return (
         <div>
             <Header />
-            {console.log("after header render rest of login page is rendered here")}
-            <div className="absolute">
-                <img src={NF_BG_IMG} alt="background" />
+            <div className="fixed">
+                <img className="h-screen w-screen object-cover" src={NF_BG_IMG} alt="background" />
             </div>
-            <form onSubmit={(e)=>e.preventDefault()} className="absolute p-12 bg-black bg-opacity-70 w-3/12 my-36 mx-auto right-0 left-0 text-white">
+            <form onSubmit={(e)=>e.preventDefault()} className="absolute p-12 bg-black bg-opacity-70 w-10/12 md:w-3/12 my-36 mx-auto right-0 left-0 text-white">
                 <h1 className=" text-white text-3xl font-bold py-4">{isSinedIn?"Sign In":"Sign Up"}</h1>
                 {!isSinedIn &&<input autoComplete="name" ref={name} type="text" placeholder="Full Name" className="p-4 my-4 w-full bg-gray-950" />}
                 <input autoComplete="email" ref={email} type="text" placeholder="Email Address" className="p-4 my-4 w-full bg-gray-950" />

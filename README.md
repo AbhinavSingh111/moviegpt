@@ -24,6 +24,8 @@
 21. Use the tmdb res to show movie posters by reusing movieList component
 22. Making use of .env variables for keeping secret keys
 23. used memoization , to reduce api calls if data is in store
+24. introduced responsiveness.'
+25. Changed Title and logo
 
 # Features
     -Login/Signup

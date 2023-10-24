@@ -30,7 +30,6 @@ const SearchBarGpt = () => {
             model: 'gpt-3.5-turbo',
           });
         const movieList = chatCompletion.choices?.[0]?.message?.content?.split(",");
-        console.log(movieList);
         if(movieList[0]==='[]'){
             alert("Please, enter prompt related to movie suggestions only !");
             return
@@ -40,14 +39,12 @@ const SearchBarGpt = () => {
         const tmdbRes = await Promise.all(promiseArray);
         console.log(tmdbRes.length);
         dispatch(addGptMovieRes({movieNames:movieList , movieResults:tmdbRes}));
-        
-        // alert("enter prompt related to movie suggestions only !")
     }
   return (
-        <div className='flex justify-center pt-[10%] z-50'>
-            <form className='w-1/2 grid grid-cols-12 bg-black ' onSubmit={(e)=>e.preventDefault()}>
+        <div className='flex justify-center md:pt-[10%] pt-[45%] z-50'>
+            <form className='mx-2 w-full md:w-1/2 grid grid-cols-12 bg-black ' onSubmit={(e)=>e.preventDefault()}>
                 <input ref={searchText} type='text' className='col-span-9 p-4 m-4 hover:bg-gray-100' placeholder={lang[langName].gptsearchbartext} />
-                <button className='col-span-3 m-4 py-2 px-4 bg-red-700 hover:opacity-50' onClick={handleGptSearch}>{lang[langName].search}</button>
+                <button className='text-white col-span-3 m-4 py-2 px-2 md:px-4 bg-red-700 md:hover:opacity-50' onClick={handleGptSearch}>{lang[langName].search}</button>
             </form>
         </div>
 

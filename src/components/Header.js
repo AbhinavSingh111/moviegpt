@@ -56,21 +56,20 @@ const Header = ()=>{
 
     return (
         
-        <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full justify-between flex">
-          <img className="w-40" src={NF_LOGO_IMG} alt="logo" />
-          {user && (<div className="flex p-2 ml-auto">
+        <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full flex flex-col md:flex-row  md:justify-between">
+          <img className="w-40 mx-auto md:mx-0" src={NF_LOGO_IMG} alt="logo" />
+          {user && (<div className="flex p-2 md:ml-auto justify-between ">
             {
-             gptView&&( <select className="px-1 pr-3 py-2 mx-4 h-12  bg-white rounded-lg hover:bg-opacity-80" onChange={handleLanguageChange}>
+             gptView&&( <select className="px-1 pr-3 py-2 mx-4 h-12  bg-white rounded-lg md:hover:bg-opacity-80" onChange={handleLanguageChange}>
                 {SUPPORTED_LANG.map(lang=><option key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}
               </select>)
             }
-            <button className="px-2 py-2 mx-4 h-12 rounded-lg bg-red-700 items-center shadow-lg hover:bg-opacity-80" onClick={handleGptClick}>
+            <button className="px-2 py-2 mx-4 h-12 rounded-lg bg-red-700 items-center shadow-lg md:hover:bg-opacity-80" onClick={handleGptClick}>
               {gptView ? "Home" : "GPT Search"}</button>
-            <img className="w-10 h-12" src={NF_USER_IMG} alt="user logo" />
-            <button className="px-2 py-2 mx-4 h-12 rounded-lg bg-white items-center shadow-lg hover:bg-opacity-80" onClick={handleClick}>Sign Out</button>
+            <img className="hidden md:block w-10 h-12" src={NF_USER_IMG} alt="user logo" />
+            <button className="px-2 py-2 mx-4 h-12 rounded-lg bg-white items-center shadow-lg md:hover:bg-opacity-80" onClick={handleClick}>Sign Out</button>
           </div>)
           }
-          {console.log("head rendered")};
         </div>
         
     )

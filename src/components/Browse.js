@@ -20,7 +20,6 @@ const Browse = () =>{
 
     return (
         <div>
-            {console.log("browser before header render")}
             <Header />
             {gptView ? <GptSearch /> : 
             (<>
@@ -29,8 +28,6 @@ const Browse = () =>{
             </>
             )
             }
-            
-            {console.log("browser after header render")}
         </div>
     );
 };
