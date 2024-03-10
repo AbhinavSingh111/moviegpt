@@ -40,12 +40,13 @@ const Header = ()=>{
             // User is signed in
             const {uid, email, displayName, photoURL} = user;
             dispatch(addUser({uid:uid, email:email, displayName:displayName,photoURL:photoURL}));
-            console.log("user added msg coming from head");
+            // console.log("user added msg coming from head");
             navigate("/browse");
-            console.log("navigated to browse from head");
+            // console.log("navigated to browse from head");
           } else {
             // User is signed out
-            console.log("head render triggered via use effect");
+            navigate("/")
+            // console.log("head render triggered via use effect");
             
           }
         });

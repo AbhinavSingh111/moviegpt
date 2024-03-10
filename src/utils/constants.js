@@ -21,5 +21,43 @@ export const SUPPORTED_LANG = [{identifier:"English" , name:"English"},
 {identifier:"French" , name:"French"}]
 
 export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+export const GEMINI_KEY = process.env.REACT_APP_GEMINI_KEY;
 export const SEARCH_MOVIE = 'https://api.themoviedb.org/3/search/movie?query=';
-export const PROMPT = "Act as a movie recommendation system. If the query enclosed in ``` delimiters is a genuine query asking for movie suggestions, then provide 5 movie names based on query strictly in form of a comma seperated list. Read the query thoroughly, even if the user enters a single word e.g.[Horror] , if it is a movie genere , then return the response in above mentioned manner. If the query is not a genuine query that asks for movie suggestions then return []. ```";
+// export const PROMPT = "Act as a movie recommendation system. If the query enclosed in ``` delimiters is a genuine query asking for movie suggestions, then provide 5 movie names based on query.Each movie name is separated by a comma and presented as an array. Read the query thoroughly, even if the user enters a single word e.g.[Horror] , if it is a movie genere , then return the response in above mentioned manner. If the query is not a genuine query that asks for movie suggestions then return []. ```";
+export const PROMPT = `
+Generate consistent movie recommendations:
+
+Prompt:Act as a movie recommendation system. If the query enclosed in rtriple backticks delimiters is a genuine query asking for movie suggestions, then provide 5 movie names based on query.Each movie name is separated by a comma and presented as an array. Read the query thoroughly, even if the user enters a single word e.g.[Horror] , if it is a movie genere , then return the response in above mentioned manner. If the query is not a genuine query that asks for movie suggestions then return []. Each recommendation is presented as an array. The list of recommendations is consistent, ensuring that you receive the same set of movie suggestions for the same query each time.
+
+Criteria:
+- The prompt identifies genuine movie recommendation queries enclosed in triple backticks.
+- If the query is related to movie genres (e.g., [Horror], [Romantic Comedy]), the prompt provides 5 movie names based on the genre.
+- If the query is related to specific movie titles (e.g., Inception, The Dark Knight), the prompt returns that movie name.
+- If the query contains keywords like "suggest," "recommend," or similar, the prompt analyzes the query for relevant movie genres or themes.
+- The list of movie recommendations is generated based on the given query, ensuring consistency.
+- Each time you provide the same input query, you'll get the same output response.
+
+Example usage:
+1. Query: \`\`\`[Horror]\`\`\`
+   Response: ["The Exorcist", "The Shining", "Psycho", "Halloween", "A Nightmare on Elm Street"]
+
+2. Query: \`\`\`Inception\`\`\`
+   Response: "Inception"
+
+3. Query: \`\`\`suggest me rom com movies\`\`\`
+   Response: ["When Harry Met Sally", "Pretty Woman", "The Proposal", "10 Things I Hate About You", "Crazy Rich Asians"]
+
+4. Query: \`\`\`recommend some action movies\`\`\`
+   Response: ["Die Hard", "The Dark Knight", "Mad Max: Fury Road", "Inception", "Terminator 2: Judgment Day"]
+
+5. Query: \`\`\`movies about coding\`\`\`
+   Response: ["The Social Network", "Hackers", "WarGames", "Tron", "Sneakers"]
+
+6. Query: \`\`\`movies with Tom Hanks\`\`\`
+   Response: ["Forrest Gump", "Cast Away", "Saving Private Ryan", "Apollo 13", "Catch Me If You Can"]
+
+
+7. Query: \`\`\`Salman Khan\`\`\`
+   Response: "Sure, could you please specify a movie genre or theme related to Salman Khan?"
+
+`;
